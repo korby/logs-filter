@@ -1,0 +1,55 @@
+function date_format {
+  php_cli=`which php`
+  instant=$1
+  date_format=$2
+  pattern_num_elements=`echo $instant | awk 'END {print NF}'`
+
+  if [ "$pattern_num_elements" == "2" ];
+  	then
+  		year=`php -r "echo date('Y');"`;
+  		day=`echo $instant | cut -d' ' -f1`
+  		second=`echo $instant | cut -d' ' -f2`
+  	elif [ "$pattern_num_elements" == "3" ];
+  		then
+  		year=`echo $instant | cut -d' ' -f1`
+  		day=`echo $instant | cut -d' ' -f2`
+  		second=`echo $instant | cut -d' ' -f3`
+  fi
+
+  day_num=`echo $day | cut -d/ -f1`
+  month=`echo $day | cut -d/ -f2`
+
+  if [[ "$second" == *":"* ]];
+    then
+    hour=`echo $second | cut -d: -f1`
+    minute=`echo $second | cut -d: -f2`
+    second=`echo $second | cut -d: -f3`
+  else
+    hour=$second
+    minute=""
+    second=""
+  fi
+
+  #php -r "echo date_format(date_create('2000-01-01'), 'Y-m-d H:i:s');"
+  #php -r "echo date_format(date_create(date('Y') . '-01-01'), 'Y-m-d H:i:s');"
+
+  date_mmm=`$php_cli -r "echo date_format(date_create('$year-$month-01'), 'M');"`
+  date_YYYY=`$php_cli -r "echo date_format(date_create('$year-01-01'), 'Y');"`
+  date_YY=`$php_cli -r "echo date_format(date_create('$year-01-01'), 'y');"`
+  date_DD=$day_num
+  date_ddd=`$php_cli -r "echo date_format(date_create('$year-$month-$day_num'), 'D');"`
+  date_HH=$hour
+  date_II=$minute
+  date_SS=$second
+
+  date_pattern=${date_format/ddd/$date_ddd}
+  date_pattern=${date_pattern/mmm/$date_mmm}
+  date_pattern=${date_pattern/DD/$date_DD}
+  date_pattern=${date_pattern/HH/$date_HH}
+  date_pattern=${date_pattern/II/$date_II}
+  date_pattern=${date_pattern/SS/$date_SS}
+  date_pattern=${date_pattern/YYYY/$date_YYYY}
+  date_pattern=${date_pattern/YY/$date_YY}
+  date_pattern=${date_pattern/::/}
+  date_pattern=`echo $date_pattern | sed "s/\(.*:[0-9]\):$/\1/"`
+}

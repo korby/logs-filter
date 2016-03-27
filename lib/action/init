@@ -1,0 +1,22 @@
+
+if [ -f ./lgfilter-config.yml ];
+	then
+	track "info" $red"Config files already exist. Aborting."$std;
+	exit 1;
+fi
+
+cat <<EOF >> ./config.yml
+logs:
+  apache_proxy:
+    path: /appli/apache/https-10.249.29.101/logs/ssl-dev1-fo-error.log
+    # lower case for letter, upper case for number
+    date_format: "ddd mmm DD HH:II:SS"
+  apache_web:
+    path: /appli/apache/https-10.249.29.101-8080/logs/fo-error.log
+    date_format: "ddd mmm DD HH:II:SS"
+  varnish:
+    path: /appli/varnish/logs/access.log
+    date_format: "DD/mmm/YYYY:HH:II:SS"
+EOF
+
+track "screen" $green"Example config files written!."$std;

@@ -1,0 +1,20 @@
+# $1 : type of tracking
+# $2 : tracking string to report
+function track {
+  screen_log="${@:2}"
+
+	case $1 in
+	    "info" )
+	        echo -e "$screen_log";
+	        ;;
+	   	"cool" )
+	        echo -e $green"$screen_log"$std;
+	        ;;
+	    "warning" )
+	        echo -e $yellow"$screen_log"$std;
+	        ;;
+	    "error" )
+	        echo -e $red"$screen_log"$std;
+	        ;;
+	esac
+}

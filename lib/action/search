@@ -1,0 +1,27 @@
+
+date_format "$instant" "$date_format"
+y=`echo -e $yellow`
+s=`echo -e $std`
+
+if [ -z $context ]; then context=1; fi;
+if [ -z $limit ]; then limit=100; fi;
+
+if [ "$keywords" != "" ];
+then
+	keywords_filter="  | grep \"$keywords\" "
+fi
+
+cde="grep -C $context -m $limit \"$date_pattern\" $path $keywords_filter | sed -e \"s/^/$y $log_id $s - /\""
+
+if [ "$verbose" == "1" ];
+then
+	track "warning" "log_id: "$log_id;
+	track "warning" "format: "$date_format;
+	track "warning" "pattern: "$date_pattern;
+	track "warning" "command: "$cde
+	track "warning" "context number of line: "$context
+	track "warning" "limit number of line: "$limit
+fi
+
+
+eval $cde
