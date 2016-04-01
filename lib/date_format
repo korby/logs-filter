@@ -33,11 +33,11 @@ function date_format {
   #php -r "echo date_format(date_create('2000-01-01'), 'Y-m-d H:i:s');"
   #php -r "echo date_format(date_create(date('Y') . '-01-01'), 'Y-m-d H:i:s');"
 
-  date_mmm=`$php_cli -r "echo date_format(date_create('$year-$month-01'), 'M');"`
-  date_YYYY=`$php_cli -r "echo date_format(date_create('$year-01-01'), 'Y');"`
-  date_YY=`$php_cli -r "echo date_format(date_create('$year-01-01'), 'y');"`
+  date_mmm=`$php_cli -r "error_reporting(0); echo date_format(date_create('$year-$month-01'), 'M');"`
+  date_YYYY=`$php_cli -r "error_reporting(0); echo date_format(date_create('$year-01-01'), 'Y');"`
+  date_YY=`$php_cli -r "error_reporting(0); echo date_format(date_create('$year-01-01'), 'y');"`
   date_DD=$day_num
-  date_ddd=`$php_cli -r "echo date_format(date_create('$year-$month-$day_num'), 'D');"`
+  date_ddd=`$php_cli -r "error_reporting(0); echo date_format(date_create('$year-$month-$day_num'), 'D');"`
   date_HH=$hour
   date_II=$minute
   date_SS=$second
