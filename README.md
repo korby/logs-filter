@@ -3,7 +3,7 @@ Performs search by date and keyword in the same time against several log files.
 
 ## Usage
 ```bash
-lgfilter init
+lgfilter init # Creates config file: lgfilter-config.yml
 lgfilter search [-v] [-c number_lines_around] [-l number_lines_limit] "[year] day/month hour[:minutes:seconds]" ["keywords"]
 ```
 
