@@ -1,0 +1,8 @@
+Package: lgfilter
+Version: 1.0
+Section: base
+Priority: optional
+Architecture: all
+Depends: coreutils,openssh-client,php5
+Maintainer: André Cianfarani <acianfa@gmail.com>
+Description: Performs search by date and keyword in the same time against several log files.

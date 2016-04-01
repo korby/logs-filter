@@ -1,0 +1,12 @@
+#deployer completion
+_lgfilter ()
+{
+  local cur keywords
+  COMPREPLY=()
+  cur=${COMP_WORDS[COMP_CWORD]}
+  keywords="search init"
+  COMPREPLY=( $(compgen -W "$keywords" -- $cur ) )
+
+  return 0
+}
+complete -F _lgfilter lgfilter
