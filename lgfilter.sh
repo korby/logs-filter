@@ -26,10 +26,6 @@ abs_path=$(dirname "$rpath")
 . $abs_path/lib/track
 . $abs_path/lib/date_format
 
-eval $(parse_yaml lgfilter-config.yml)
-logs=(${ids[@]})
-ids=()
-
 option_total=0
 while getopts vc:l: options
 do	case "$options" in
@@ -58,6 +54,10 @@ for (( c=1; c<=$option_total; c++ ))
 do
    shift;
 done
+
+eval $(parse_yaml lgfilter-config.yml)
+logs=(${ids[@]})
+ids=()
 
 action=$1
 instant=$2
