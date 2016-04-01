@@ -5,6 +5,10 @@ cp -R lib debian_package/usr/share/logs-filter/
 cd debian_package/usr/bin/;
 ln -s ../share/logs-filter/lgfilter.sh lgfilter
 chmod +x lgfilter;
+rm debian_package/.DS_Store
+rm debian_package/*/.DS_Store
+rm debian_package/*/*/.DS_Store
+
 cd $cwd;
 dpkg --build debian_package lgfilter.deb
 
