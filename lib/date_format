@@ -6,7 +6,7 @@ function date_format {
 
   if [ "$pattern_num_elements" == "2" ];
   	then
-  		year=`php -r "echo date('Y');"`;
+  		year=`$php_cli -r "error_reporting(0); echo date('Y');"`;
   		day=`echo $instant | cut -d' ' -f1`
   		second=`echo $instant | cut -d' ' -f2`
   	elif [ "$pattern_num_elements" == "3" ];
