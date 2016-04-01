@@ -5,7 +5,7 @@ if [ -f ./lgfilter-config.yml ];
 	exit 1;
 fi
 
-cat <<EOF >> ./config.yml
+cat <<EOF >> ./lgfilter-config.yml
 logs:
   apache_proxy:
     path: /appli/apache/https-10.249.29.101/logs/ssl-dev1-fo-error.log

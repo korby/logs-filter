@@ -55,13 +55,18 @@ do
    shift;
 done
 
-eval $(parse_yaml lgfilter-config.yml)
-logs=(${ids[@]})
-ids=()
-
 action=$1
 instant=$2
 keywords=$3
+
+if [ "$action" == "init" ];
+  then
+    . $abs_path/lib/action/$action
+    exit 0
+fi
+eval $(parse_yaml lgfilter-config.yml)
+logs=(${ids[@]})
+ids=()
 
 for log_id in "${logs[@]}"
 do
