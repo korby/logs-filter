@@ -4,14 +4,14 @@ y=`echo -e $yellow`
 s=`echo -e $std`
 
 if [ -z $context ]; then context=1; fi;
-if [ -z $limit ]; then limit=100; fi;
+if [ ! -z $limit ]; then limitoption="-m "$limit; fi;
 
 if [ "$keywords" != "" ];
 then
-	keywords_filter="  | grep \"$keywords\" "
+        keywords_filter="  | grep \"$keywords\" "
 fi
 
-cde="grep -C $context -m $limit \"$date_pattern\" $path $keywords_filter | sed -e \"s/^/$y $log_id $s - /\""
+cde="grep -C $context $limitoption \"$date_pattern\" $path $keywords_filter | sed -e \"s/^/$y $log_id $s - /\""
 
 if [ "$verbose" == "1" ];
 then
