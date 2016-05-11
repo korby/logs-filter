@@ -34,6 +34,7 @@ function date_format {
   #php -r "echo date_format(date_create(date('Y') . '-01-01'), 'Y-m-d H:i:s');"
 
   date_mmm=`$php_cli -r "error_reporting(0); echo date_format(date_create('$year-$month-01'), 'M');"`
+  date_MM=`$php_cli -r "error_reporting(0); echo date_format(date_create('$year-$month-01'), 'm');"`
   date_YYYY=`$php_cli -r "error_reporting(0); echo date_format(date_create('$year-01-01'), 'Y');"`
   date_YY=`$php_cli -r "error_reporting(0); echo date_format(date_create('$year-01-01'), 'y');"`
   date_DD=$day_num
@@ -44,6 +45,7 @@ function date_format {
 
   date_pattern=${date_format/ddd/$date_ddd}
   date_pattern=${date_pattern/mmm/$date_mmm}
+  date_pattern=${date_pattern/MM/$date_MM}
   date_pattern=${date_pattern/DD/$date_DD}
   date_pattern=${date_pattern/HH/$date_HH}
   date_pattern=${date_pattern/II/$date_II}
