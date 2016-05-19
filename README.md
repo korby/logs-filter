@@ -39,7 +39,7 @@ dpkg -i lgfilter.deb
 ```bash
 git clone git@github.com:korby/logs-filter.git
 cd logs-filter
-ln -s /usr/bin/lgfilter `pwd`/lgfilter.sh
+ln -s `pwd`/lgfilter.sh /usr/bin/lgfilter
 ```
 If you have bash_completion installed on your system :
 ```bash
